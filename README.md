@@ -15,7 +15,7 @@ This project uses a Python environment consumer to process widget requests from 
 
 # Instructions for running
 1. Run the consumer script for S3 or DynamoDB
-    * S3 - ```bash python consumer.py --storage s3 --consume-bucket-name <your-request-bucket> --bucket-name <your-web-bucket>```
-    * DynamoDB - ```bash python consumer.py --storage dynamodb --consume-bucket-name <your-request-bucket> --table-name widgets```
+    * S3 - ```python consumer.py --storage s3 --consume-bucket-name <your-request-bucket> --bucket-name <your-web-bucket>```
+    * DynamoDB - ```python consumer.py --storage dynamodb --consume-bucket-name <your-request-bucket> --table-name widgets```
 2. Send the requests from producer
-    * ```bash java -jar producer.jar -rb <your-request-bucket> -mwr 10```
+    * ```java -jar producer.jar -rb <your-request-bucket> -mwr 10```
