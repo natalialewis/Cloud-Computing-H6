@@ -47,7 +47,7 @@ def consume_requests(storage, consume_bucket_name, bucket_name, table_name):
             # if there is a request, process the request
             if request is not None:
 
-                req_id = request.get("request_id", "unknown")
+                req_id = request.get("requestId", "unknown")
 
                 # if the request is to create a widget
                 if request.get("type") == "create":
