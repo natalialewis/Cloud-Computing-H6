@@ -16,11 +16,11 @@ class S3Retriever:
 
             # if there are no objects, return None
             if 'Contents' not in response or len(response['Contents']) == 0:
-                logging.info("No request available")
                 return None
 
             # if there is an object, get its key
             key = response['Contents'][0]['Key']
+            logging.info("Request {} found in bucket.".format(response['Contents'][0]['Key']))
 
             # log the key being processed
             logging.info(f"Retrieving request: {key}")
