@@ -41,7 +41,7 @@ class DynamoDBStorage:
     def create_widget(self, request):
         # Prepare the item to be stored in DynamoDB
         item = {
-            'widgetId': request['widgetId'],
+            'id': request['widgetId'],
             'owner': request['owner']
         }
         
