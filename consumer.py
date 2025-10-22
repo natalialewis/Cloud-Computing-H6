@@ -1,8 +1,19 @@
+import sys
 import time
 import click
 from retriever import S3Retriever
 from storage import S3Storage
 from storage import DynamoDBStorage
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("consumer.log"),  # Logs to consumer.log
+        logging.StreamHandler(sys.stdout)   # Logs to the console
+    ]
+)
 
 # registers the function as a command line command
 @click.command()
@@ -36,16 +47,24 @@ def consume_requests(storage, consume_bucket_name, bucket_name, table_name):
             # if there is a request, process the request
             if request is not None:
 
+                req_id = request.get("request_id", "unknown")
+
                 # if the request is to create a widget
                 if request.get("type") == "create":
-                    storage_handler.create_widget(request)
+                    try:
+                        # try to create the widget
+                        storage_handler.create_widget(request)
+                        logging.info(f"Successfully created widget for request: {req_id}")
+                    except Exception as e:
+                        logging.error(f"Failed to create widget for request {req_id}: {e}")
 
                 # if the request is to delete a widget
                 elif request.get("type") == "delete":
-                    
+                    logging.warning(f"Delete request {req_id} not implemented yet (HW7). Skipping.")
 
                 # if the request is to change a widget
                 elif request.get("type") == "update":
+                    logging.warning(f"Update request {req_id} not implemented yet (HW7). Skipping.")
 
             # else if there is no request, wait for 100 ms before checking again
             else:
