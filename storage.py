@@ -56,7 +56,7 @@ class DynamoDBStorage:
             for attr in request['otherAttributes']:
                 item[attr['name']] = attr['value']
 
-        logging.info(f"Storing widget in DynamoDB: {item['widgetId']}")
+        logging.info(f"Storing widget in DynamoDB: {item['id']}")
 
         # Store the item in DynamoDB
         self.table.put_item(Item=item)
