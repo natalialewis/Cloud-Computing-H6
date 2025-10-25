@@ -8,3 +8,4 @@ __pycache__/
 producer.jar
 widgetRequest-schema.json
 .vscode/
+*.png

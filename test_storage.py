@@ -105,7 +105,7 @@ class TestDynamoDBStorage(unittest.TestCase):
         # This is the expected item that should be sent to put_item.
         # Notice 'color' and 'size' are top-level keys.
         expected_item = {
-            "widgetId": "w-ddb-001",
+            "id": "w-ddb-001",
             "owner": "Test User DDB",
             "label": "DDB Widget",
             "description": "A widget for DDB.",
@@ -144,7 +144,7 @@ class TestDynamoDBStorage(unittest.TestCase):
         # The expected item should only contain the properties that exist
         # in the request.
         expected_item = {
-            "widgetId": "w-ddb-002",
+            "id": "w-ddb-002",
             "owner": "Another User DDB",
             "label": "Simple DDB Widget"
             # It should gracefully handle the missing 'description' and 'otherAttributes'
